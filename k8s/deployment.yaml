@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: enhanced-petclinic
-          image: azurejenkins.azurecr.io/jenkins-project-pet:23
+          image: azurejenkins.azurecr.io/jenkins-project-pet:24
           ports:
             - containerPort: 8080
       imagePullSecrets:
