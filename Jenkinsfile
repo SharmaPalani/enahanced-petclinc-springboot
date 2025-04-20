@@ -33,7 +33,6 @@ pipeline {
                 SCANNER_HOME = tool 'Sonar-scanner'
             }
             steps {
-                echo "sonar analysis"
                 withSonarQubeEnv('sonarserver') {
                     sh 
                     '''
