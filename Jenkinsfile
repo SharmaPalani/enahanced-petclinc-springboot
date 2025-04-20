@@ -22,5 +22,11 @@ pipeline {
                 sh 'mvn test'
             }
         }
+        stage('filesystem scanning by trivy') {
+            steps {
+                echo "trivy scanning"
+                sh 'trivy fs --format table --output result.txt .'
+            }
+        }
     }
 }
