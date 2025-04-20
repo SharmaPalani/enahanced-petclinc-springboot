@@ -72,7 +72,7 @@ pipeline {
                 script{
                 sh '''
                 echo "ACR login"
-                az acr login --service-principal -u $AZURE_USERNAME -p $AZURE_PASSWORD --tenant $TENANT_ID
+                az login --service-principal -u $AZURE_USERNAME -p $AZURE_PASSWORD --tenant $TENANT_ID
                 az acr login --name $ACR_NAME
                 '''
                 }
