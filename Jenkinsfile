@@ -34,8 +34,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('sonarserver') {
-                    sh 
-                    '''
+                    sh '''
                     $SCANNER_HOME/bin/sonar/sonar-scanner \
                     -Dsonar.projectKey=sharmapalani_jenkins-project \
                     -Dsonar.projectName=jenkins_project \
