@@ -69,11 +69,13 @@ pipeline {
         stage('ACR login') {
             steps {
                 withCredentials([usernamepassword(credentialsId: 'acr_login', passwordVariable: 'AZURE_PASSWORD', usernameVariable: 'AZURE_USERNAME')]) {   
-                echo "docker login"
+                script{
                 sh '''
+                echo "ACR login"
                 az acr login --service-principal -u $AZURE_USERNAME -p $AZURE_PASSWORD --tenant $TENANT_ID
                 az acr login --name $ACR_NAME
                 '''
+                }
             }
         }
         }
