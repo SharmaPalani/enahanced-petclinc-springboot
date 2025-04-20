@@ -28,6 +28,24 @@ pipeline {
                 sh 'trivy fs --format table --output result1.txt .'
             }
         }
+        stage('sonar analysis') {
+            environment {
+                SCANNER_HOME = tool 'Sonar-scanner'
+            }
+            steps {
+                echo "sonar analysis"
+                withSonarQubeEnv('sonarserver') {
+                    sh 
+                    '''
+                    $SCANNER_HOME/bin/sonar/sonar-scanner \
+                    -Dsonar.projectKey=sharmapalani_jenkins-project \
+                    -Dsonar.projectName=jenkins_project \
+                    -Dsonar.organization=sharmapalani \
+                    -Dsonar.java.binaries=. \
+                    '''
+                }
+            }
+        }
 
     }
 }
