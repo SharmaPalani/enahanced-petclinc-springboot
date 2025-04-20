@@ -68,7 +68,7 @@ pipeline {
         }
         stage('ACR login') {
             steps {
-                withCredentials([usernamepassword(credentialsId: 'acr_login', passwordVariable: 'AZURE_PASSWORD', usernameVariable: 'AZURE_USERNAME')]) {   
+                withCredentials([usernamePassword(credentialsId: 'acr_login', passwordVariable: 'AZURE_PASSWORD', usernameVariable: 'AZURE_USERNAME')]) {   
                 script{
                 sh '''
                 echo "ACR login"
