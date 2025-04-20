@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: enhanced-petclinic
+  labels:
+    app: enhanced-petclinic
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: enhanced-petclinic
+  template:
+    metadata:
+      labels:
+        app: enhanced-petclinic
+    spec:
+      containers:
+        - name: enhanced-petclinic
+          image: azurejenkins.azurecr.io/jenkins-project-pet:IMAGE_TAG
+          ports:
+            - containerPort: 8080
+      imagePullSecrets:
+        - name: acr-aks
+
+
