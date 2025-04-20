@@ -94,7 +94,7 @@ pipeline {
         }
         stage('AKS login') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'aks_login', passwordVariable: 'AZURE_PASSWORD', usernameVariable: 'AZURE_USERNAME')]) {
+                withCredentials([usernamePassword(credentialsId: 'acr_login', passwordVariable: 'AZURE_PASSWORD', usernameVariable: 'AZURE_USERNAME')]) {
                 script{
                 sh '''
                 echo "AKS login"
