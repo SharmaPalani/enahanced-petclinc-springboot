@@ -108,7 +108,7 @@ pipeline {
         stage('deploy to AKS'){
             steps{
                 script{
-                    echo
+                    echo "deploy to AKS"
                     def output = sh(
                         script: "kubectl get deployment ${K8S_DEPLOYMENT} --ignore-not-found",returnStdout: true
                         ).trim()
