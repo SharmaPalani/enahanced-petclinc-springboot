@@ -12,6 +12,7 @@ pipeline {
         FULL_IMAGE_NAME = "${ACR_LOGIN_SERVER}/${IMAGE_NAME}:${IMAGE_TAG}"
         AKS_NAME = "jenkinsaks"
         RESOURCE_GROUP = "rg"
+        K8S_DEPLOYMENT = "enhanced-petclinic"
     }
     stages {
         stage('checking out from git') {
