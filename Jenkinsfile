@@ -122,7 +122,7 @@ pipeline {
                     } else {
                         echo "Deployment does not exist. Creating..."
                         sh '''
-                        sed "s/_IMAGE_TAG_/${IMAGE_TAG}/" k8s/deployment.yaml > k8s/tmp/deployment.yaml
+                        sed "s/__IMAGE_TAG__/${IMAGE_TAG}/" k8s/deployment.yaml > k8s/tmp/deployment.yaml
                         kubectl apply -f k8s/tmp/deployment.yaml
                         '''
                     }
