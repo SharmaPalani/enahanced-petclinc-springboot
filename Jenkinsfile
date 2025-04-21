@@ -108,11 +108,23 @@ pipeline {
         stage('deploy to AKS'){
             steps{
                 script{
-                    echo "deploy to AKS"
-                    sh '''
-                    kubectl apply -f k8s/deployment.yaml
-                    kubectl apply -f k8s/service.yaml
-                    '''
+                    echo
+                    def output = sh(
+                        script: "kubectl get deployment ${K8S_DEPLOYMENT} --ignore-not-found",returnStdout: true
+                        ).trim()
+                    def deploymentExists = output != ""
+                    if (deploymentExists) {
+                        echo "Deployment already exists. Updating..."
+                        sh '''
+                        kubectl set image deployment/${K8S_DEPLOYMENT} ${K8S_DEPLOYMENT}=${FULL_IMAGE_NAME}
+                        '''
+                    } else {
+                        echo "Deployment does not exist. Creating..."
+                        sh '''
+                        sed "s/_IMAGE_TAG_/${IMAGE_TAG}/" k8s/deployment.yaml > k8s/tmp/deployment.yaml
+                        kubectl apply -f k8s/tmp/deployment.yaml
+                        '''
+                    }
                 }
             }
         }
